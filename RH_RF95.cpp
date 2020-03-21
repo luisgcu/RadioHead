@@ -20,7 +20,21 @@ PROGMEM static const RH_RF95::ModemConfig MODEM_CONFIG_TABLE[] =
     { 0x92,   0x74,    0x04}, // Bw500Cr45Sf128, AGC enabled
     { 0x48,   0x94,    0x04}, // Bw31_25Cr48Sf512, AGC enabled
     { 0x78,   0xc4,    0x0c}, // Bw125Cr48Sf4096, AGC enabled
-    
+    { 0x52,   0x94,    0x00}, //5:  BW41_7Cr45Sf512    was 0x62
+	{ 0x52,   0xa4,    0x00}, //6:  BW62_5Cr45Sf1024
+	{ 0x52,   0x94,    0x00}, //7:  BW62_5Cr45Sf512    /// hasta aqui las old ya probadas	
+	{ 0x82,   0x74,    0x00}, //8:  BW256_7Cr45sf128 deulis test
+	{ 0x72,   0x70,    0x00}, //9:  BW125_7Cr45sf128 yo test jan2017
+	{ 0x62,   0x70,    0x00}, //10: BW62_57Cr45sf128 yo 2
+	{ 0x74,   0x90,    0x00}, //11: BW125CR46SF9  yo 3	
+	{ 0x62,   0x84,    0x00}, //12: BW62_5CR45SF10  Bw = 62.5khz,  Cr = 4/5, Sf10   = 1024  chips/symbol, CRC on.
+	{ 0x64,   0xa4,    0x00}, //13: BW62_5CR46SF10 Bw = 62.5khz,  Cr = 4/6, Sf10  = 1024 chips/symbol, CRC on.  (BW62_5CR46SF10); 
+	{ 0x63,   0xb4,    0x00}, //14: BW62_5CR45SF11 Bw = 62.5khz,  Cr = 4/5, Sf11  = 2048 chips/symbol, CRC on.
+	{ 0x73,   0xB4,    0x00}, //15: BW125CR45SF11  Bw = 125khz,   Cr = 4/5, Sf11  = 2048 chips/symbol, CRC on.
+	{ 0x73,   0x74,    0x00}, //16: BW125CR45SF10  Bw = 125khz,   Cr = 4/5, Sf10  = 1024 chips/symbol, CRC on.  was A4
+	{ 0x42,   0x84,    0x00}, //17: BW31_25CR45SF9 Bw = 31.25khz, Cr = 4/5, Sf8  = 256 chips/symbol, CRC on.  was A4
+	{ 0x52,   0x94,    0x00}, //18: BW41_7CR45SF9 Bw = 41.7khz,  Cr = 4/5, Sf9  = 512 chips/symbol, CRC on.  was A4
+	{ 0x52,   0xa4,    0x00}, //19: BW41_7CR45SF10 Bw = 41.7khz,  Cr = 4/5, Sf10  = 1024 chips/symbol, CRC on  (Deulis)  1d=was 0x52 (41.7 cr 4/5)
 };
 
 RH_RF95::RH_RF95(uint8_t slaveSelectPin, uint8_t interruptPin, RHGenericSPI& spi)
@@ -105,8 +119,39 @@ bool RH_RF95::init()
 
     // Set up default configuration
     // No Sync Words in LORA mode.
-    setModemConfig(Bw125Cr45Sf128); // Radio default
+    //setModemConfig(Bw125Cr45Sf128); // Radio default
 //    setModemConfig(Bw125Cr48Sf4096); // slow and reliable?
+////********************MY ADDS******************/////
+  // setModemConfig(Bw500Cr45Sf128);   // 1: Bw = 500kHz, Cr = 4/5, Sf7  = 128  chips/symbol,CRC on --> I gott a delay of: RSSI= 33, 105 ms sending this --> Hello World!!
+  // setModemConfig(Bw125Cr45Sf128);   // 2: Bw = 125kHz, Cr = 4/5, Sf7  = 128  chips/symbol,CRC on --> I gott a delay of: RSSI= 36, 230 ms sending this --> Hello World!!  Default Radio tx power of 20db gave 53dbm  rssi node 3  (distance 70cm)
+  //setModemConfig(Bw125Cr48Sf4096);  // 3; Bw = 125kHz, Cr = 4/8, Sf12 = 4096 chips/symbol,CRC on Slow+long range --->>> delay I got of 2176ms (DO NOT WORK NOW) sending this --> Hello World!(1923m con el GPS tracker 5dbm) last used on 02/04/2017
+  
+   ///setModemConfig(Bw31_25Cr48Sf512); // 4: Bw = 31.25kHz, Cr = 4/8, Sf9  = 512  chips/symbol,CRC on --> I gott a delay of: RSSI= 39, 1345 ms sending this --> GPS DATA!! (872m con el GPS tracker 5dbm)
+  
+  // setModemConfig(BW41_7Cr45Sf512);  // 5: Bw = 41.7kHz,  Cr = 4/5, Sf9  = 512  chips/symbol,CRC on --> I gott a delay of:  1816 ms 
+  // setModemConfig(BW62_5Cr45Sf1024); // 6: Bw = 62.5kHz,  Cr = 4/5, Sf10 = 1024 chips/symbol,CRC on Slow+long range--->>>  delay I got of 1652ms ( NOW DO NOT WORK!!)
+  // setModemConfig(BW62_5Cr45Sf512);  // 7: Bw = 62.5kHz,  Cr = 4/5, Sf9  = 512  chips/symbol,CRC on --> I gott a delay of: 1816 ms 
+  // setModemConfig(BW256_7Cr45sf128); // 8: Bw = 256 kHz,  Cr = 4/5, Sf7  = 128  chips/symbol,CRC on --> I gott a delay of:  145 ms 
+  // setModemConfig(BW125_7Cr45sf128); // 9: Bw = 125 kHz,  Cr = 4/5, Sf7  = 128  chips/symbol,CRC on --> I gott a delay of:  219 ms 
+  // setModemConfig(BW62_57Cr45sf128); // 10: Bw = 62.5kHz, Cr = 4/5, Sf7  = 128  chips/symbol,CRC on --> I gott a delay of:  376 ms 
+  // setModemConfig(BW125CR46SF9);     // 11: BW = 125 Khz, Cr = 4/6, SF9  = 512  chips/symbol,CRC on --> I gott a delay of:  647 ms 
+  ///setModemConfig(BW62_5CR45SF10);   // 12: Bw = 62.5khz, Cr = 4/5, Sf10  = 1024 chips/symbol,CRC on --> I gott a delay of: 297 ms ing this --> gps data  tested oct16 2017
+     /////
+   ///used before october setModemConfig(BW62_5CR46SF10);   // 13: Bw = 62.5khz, Cr = 4/6, Sf10 = 1024 chips/symbol,CRC on --> I gott a delay of:  1186 ms sending this --> GPS data
+    ////
+   //setModemConfig(BW62_5CR45SF11);   // 14: Bw = 62.5khz, Cr = 4/5, Sf11 = 2048 chips/symbol,CRC on --> DO NOT WORK sending this --> GPS 
+  // setModemConfig(BW125CR45SF11);    // 15: Bw = 125 khz, Cr = 4/5, Sf11 = 2048 chips/symbol,CRC on--> DO NOT WORK sending this --> Hello World!
+  // setModemConfig(BW125CR45SF10);    // 16: Bw = 125khz,  Cr = 4/5, Sf10 = 1024 chips/symbol,CRC on--> DO NOT WORK sending this --> Hello World!
+     ////
+   setModemConfig(BW31_25CR45SF9);    // 17: Bw = 31.25khz, Cr = 4/5, Sf8  = 256 chips/symbol,CRC  on--> I got a delay of:  591 ms sending this --> GPS DATA! esta es la que usado ultimo
+    ////
+   //setModemConfig(BW41_7CR45SF9);     // 18: Bw = 41.7khz,  Cr = 4/5, Sf9  = 512 chips/symbol, CRC on--> I got delay of  821ms
+    
+	//setModemConfig(BW41_7CR45SF10);   //19: BW41_7CR45SF10 Bw = 41.7khz,  Cr = 4/5, Sf10  = 1024 chips/symbol, CRC on  I got a delay of:  1600 ms sending this --> GPS DATA!
+	
+	
+	////*******************END MY ADDITIONS*********//////
+
     setPreambleLength(8); // Default is 8
     // An innocuous ISM frequency, same as RF22's
     setFrequency(434.0);

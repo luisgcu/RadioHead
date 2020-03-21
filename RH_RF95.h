@@ -597,6 +597,21 @@ public:
 	Bw500Cr45Sf128,	           ///< Bw = 500 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Fast+short range
 	Bw31_25Cr48Sf512,	   ///< Bw = 31.25 kHz, Cr = 4/8, Sf = 512chips/symbol, CRC on. Slow+long range
 	Bw125Cr48Sf4096,           ///< Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, CRC on. Slow+long range
+	BW41_7Cr45Sf512,          ///5: Bw = 41.7 kHz,  Cr = 4/5, Sf  = 512chips/symbol, CRC on
+	BW62_5Cr45Sf1024,         ///6: Bw = 62.5 kHz,  Cr = 4/5, Sf  = 1024 chips/symbol, CRC on
+	BW62_5Cr45Sf512,          ///7: Bw = 62.5 kHz,  Cr = 4/5, Sf  = 512 chips/symbol, CRC on
+	BW256_7Cr45sf128,         ///8: Bw = 256 kHz,   Cr = 4/5, Sf7 = 128chips/symbol, CRC on
+	BW125_7Cr45sf128,         ///9: Bw = 125 kHz,   Cr = 4/5, Sf7 = chips/symbol, CRC on
+	BW62_57Cr45sf128,         ///10: Bw = 62.5 kHz, Cr = 4/5, Sf7 = chips/symbol, CRC on
+	BW125CR46SF9,             ///11: Bw = 125 kHz,  Cr = 4/6, Sf9 = chips/symbol, CRC on
+	BW62_5CR45SF10,            ///12: Bw = 62.5 khz, Cr = 4/5, Sf8 = 256   chips/symbol, CRC on.
+	BW62_5CR46SF10,           ///13: Bw = 62.5 khz, Cr = 4/6, Sf10 = 1024 chips/symbol, CRC on.
+	BW62_5CR45SF11,           ///14: Bw = 62.5 khz, Cr = 4/5, Sf11 = 2048 chips/symbol, CRC on.
+	BW125CR45SF11,            ///15: Bw = 125 khz,  Cr = 4/5, Sf11 = 2048 chips/symbol, CRC on.
+	BW125CR45SF10,            ///16: Bw = 125 khz,  Cr = 4/5, Sf10 = 1024 chips/symbol, CRC on.
+	BW31_25CR45SF9,           ///17: Bw = 31.25khz, Cr = 4/5, Sf8  = 256  chips/symbol, CRC on. 
+	BW41_7CR45SF9,            ///18: Bw = 41.7khz,  Cr = 4/5, Sf8  = 256  chips/symbol, CRC on
+	BW41_7CR45SF10,            ///19: BW41_7CR45SF10 Bw = 41.7khz,  Cr = 4/5, Sf10  = 1024 chips/symbol, CRC on (deulis)
     } ModemConfigChoice;
 
     /// Constructor. You can have multiple instances, but each instance must have its own
