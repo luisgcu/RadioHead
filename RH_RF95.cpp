@@ -19,21 +19,21 @@ uint8_t RH_RF95::_interruptCount = 0; // Index into _deviceForInterrupt for next
 // These are indexed by the values of ModemConfigChoice
 // Stored in flash (program) memory to save SRAM
 PROGMEM static const RH_RF95::ModemConfig MODEM_CONFIG_TABLE[] =
-{
+{   //BwCrhed, SFtxmod,
     //  1d,     1e,      26
-    { 0x72,   0x74,    0x04}, //0 Bw125Cr45Sf128 (the chip default), AGC enabled
-    { 0x92,   0x74,    0x04}, //1 Bw500Cr45Sf128, AGC enabled
-    { 0x48,   0x94,    0x04}, //2 Bw31_25Cr48Sf512, AGC enabled
-    { 0x78,   0xc4,    0x0c}, //3 Bw125Cr48Sf4096, AGC enabled, LowDataRateOptimize
-    { 0x72,   0xb4,    0x04}, //4 Bw125Cr45Sf2048, AGC enabled
-    { 0x42,   0x84,    0x0c}, //5:  BW31_25Cr45Sf8 Bw = 31.25khz,imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on, LowDataRateOptimize       
-	{ 0x72,   0xa4,    0x0c}, //6:  BW125Cr45Sf10  Bw = 125khz,  imp header off, Cr= 4/5, Sf10 = 1024 chips/symbol, CRC on, LowDataRateOptimize 
-	{ 0x52,   0xb4,    0x0c}, //7:  BW41_7CR45Sf11 Bw = 41.7khz, imp header off, Cr= 4/5, Sf11 = 2048  chips/symbol, CRC on, LowDataRateOptimize    	
-	{ 0x82,   0x74,    0x0c}, //8:  BW256_7Cr45sf7 Bw = 250khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on, LowDataRateOptimize
-	{ 0x72,   0x74,    0x0c}, //9:  BW125_7Cr45sf7 Bw = 125khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on, LowDataRateOptimize
+    { 0x72,   0x74,    0x04}, //0   Bw125Cr45Sf7 (the chip default), AGC enabled
+    { 0x92,   0x74,    0x04}, //1   Bw500Cr45Sf7, AGC enabled
+    { 0x48,   0x94,    0x04}, //2   Bw31_25Cr48Sf9, AGC enabled
+    { 0x78,   0xc4,    0x0c}, //3   BW125CR48Sf12, AGC enabled, LowDataRateOptimize
+    { 0x72,   0xb4,    0x04}, //4   BW125CR45Sf11, AGC enabled
+    { 0x42,   0x84,    0x0c}, //5:  BW31_25CR45Sf8 Bw = 31.25khz,imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on, LowDataRateOptimize       
+	{ 0x72,   0xa4,    0x0c}, //6:  BW125CR45Sf10  Bw = 125khz,  imp header off, Cr= 4/5, Sf10 = 1024 chips/symbol, CRC on, LowDataRateOptimize 
+	{ 0x52,   0xb4,    0x0c}, //7:  BW41_7CR45SF11 Bw = 41.7khz, imp header off, Cr= 4/5, Sf11 = 2048  chips/symbol, CRC on, LowDataRateOptimize    	
+	{ 0x82,   0x74,    0x0c}, //8:  BW250CR45Sf7 Bw = 250khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on, LowDataRateOptimize
+	{ 0x94,   0x74,    0x0c}, //9:  BW125CR45Sf9 Bw = 125khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on, LowDataRateOptimize
 	{ 0x62,   0x74,    0x0c}, //10: BW62_57Cr45sf7 Bw = 62.5khz, imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on, LowDataRateOptimize
 	{ 0x72,   0x94,    0x0c}, //11: BW125CR46SF9   Bw = 125khz,  imp header off, Cr= 4/5, Sf9  = 1024 chips/symbol, CRC on, LowDataRateOptimize
-	{ 0x62,   0x84,    0x0c}, //12: BW62_5CR45SF10 Bw = 62.5khz, imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on, LowDataRateOptimize
+	{ 0x62,   0xa4,    0x0c}, //12: BW62_5CR45SF10 Bw = 62.5khz, imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on, LowDataRateOptimize
 	{ 0x64,   0xa4,    0x0c}, //13: BW62_5CR46SF10 Bw = 62.5khz, imp header off, Cr= 4/6, Sf10 = 1024 chips/symbol, CRC on, LowDataRateOptimize  
 	{ 0x62,   0xb4,    0x0c}, //14: BW62_5CR45SF11 Bw = 62.5khz, imp header off, Cr= 4/5, Sf11 = 2048 chips/symbol, CRC on, LowDataRateOptimize
 	{ 0x72,   0xb4,    0x0c}, //15: BW125CR45SF11  Bw = 125khz,  imp header off, Cr= 4/5, Sf11 = 2048 chips/symbol, CRC on, LowDataRateOptimize

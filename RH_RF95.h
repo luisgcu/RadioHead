@@ -601,26 +601,26 @@ public:
     /// is in use. See the Semtech SX1276/77/78 Errata Note. These are not implemented by RH_RF95.
     typedef enum
     {
-	Bw125Cr45Sf128 = 0,	///< Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Default medium range
-	Bw500Cr45Sf128,	    ///< Bw = 500 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Fast+short range
-	Bw31_25Cr48Sf512,	///< Bw = 31.25kHz, Cr = 4/8, Sf = 512chips/symbol, CRC on. Slow+long range
-	Bw125Cr48Sf4096,    ///< Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, low data rate, CRC on. Slow+long range
-	Bw125Cr45Sf8,       ///< Bw = 125 kHz, Cr = 4/5, Sf = 2048chips/symbol, CRC on. Slow+long range
-    BW41_7Cr45Sf512,  //5:  BW31_25Cr45Sf8  Bw = 31.25khz,  imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on.       
-	BW62_5Cr45Sf10,   //6:  BW125Cr45Sf10   Bw = 125khz,  imp header off, Cr= 4/5, Sf10  = 1024 chips/symbol, CRC on.  
-	BW62_5Cr45Sf11,   //7:  BW41_7CR45Sf11   Bw = 41.7khz, imp header off, Cr= 4/5, Sf11 = 2048  chips/symbol, CRC on.    	
-	BW256_7Cr45sf7,   //8:  BW256_7Cr45sf7  Bw = 250khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on.
-	BW125_7Cr45sf7,   //9:  BW125_7Cr45sf7  Bw = 125khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on.
-	BW62_57Cr45sf7,   //10: BW62_57Cr45sf7  Bw = 62.5khz, imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on.
-	BW125CR46SF9,     //11: BW125CR46SF9   Bw = 125khz,  imp header off, Cr= 4/5, Sf9  = 1024 chips/symbol, CRC on.
-	BW62_5CR45SF10,   //12: BW62_5CR45SF10 Bw = 62.5khz, imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on.
-	BW62_5CR46SF10,   //13: BW62_5CR46SF10 Bw = 62.5khz, imp header off, Cr= 4/6, Sf10  = 1024 chips/symbol, CRC on.
-	BW62_5CR45SF11,   //14: BW62_5CR45SF11 Bw = 62.5khz, imp header off, Cr= 4/5, Sf11  = 2048 chips/symbol, CRC on.
-	BW125CR45SF11,    //15: BW125CR45SF11  Bw = 125khz,  imp header off, Cr= 4/5, Sf11  = 2048 chips/symbol, CRC on.
-	BW125CR45SF10,    //16: BW125CR45SF10  Bw = 125khz,  imp header off, Cr= 4/5, Sf10  = 1024 chips/symbol, CRC on.
-	BW31_25CR45SF8,   //17: BW31_25CR45SF8 Bw = 31.25khz, imp header off, Cr= 4/5, Sf8   = 256  chips/symbol, CRC on.
-	BW41_7CR45SF9,    //18: BW41_7CR45SF9  Bw = 41.7khz, imp header off, Cr= 4/5, Sf9   = 512  chips/symbol, CRC on.
-	BW41_7CR45SF10,   //19: BW41_7CR45SF10 Bw = 41.7khz, imp header off,  Cr= 4/5, Sf10  = 1024 chips/symbol, CRC on, 
+	Bw125CR45SF7 = 0,  //< Bw = 125 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Default medium range
+	Bw500CR45SF7,	  //1: Bw = 500 kHz, Cr = 4/5, Sf = 128chips/symbol, CRC on. Fast+short range
+	BW31_25CR48SF9,   //2: Bw = 31.25kHz, Cr = 4/8, Sf = 512chips/symbol, CRC on. Slow+long range
+	BW125CR48SF9,     //3: Bw = 125 kHz, Cr = 4/8, Sf = 4096chips/symbol, low data rate, CRC on. Slow+long range
+	BW125CR45SF11_,    //4: Bw = 125 kHz, Cr = 4/5, Sf = 2048chips/symbol, CRC on. Slow+long range
+    BW41_7CR45SF8,    //5:  BW31_25Cr45Sf8, Bw = 31.25khz,  imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on.       
+	BW125CR45SF10,   //6:  BW125Cr45Sf10,  Bw = 125khz,  imp header off, Cr= 4/5, Sf10  = 1024 chips/symbol, CRC on.  
+	BW41_7CR45SF11,   //7:  BW41_7CR45Sf11, Bw = 41.7khz, imp header off, Cr= 4/5, Sf11 = 2048  chips/symbol, CRC on.    	
+	BW250CR45SF7,     //8:  BW256_7Cr45sf7, Bw = 250khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on.
+	BW125CR45SF9,     //9:  BW125_7Cr45sf7, Bw = 125khz,  imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on.
+	BW62_57CR45SF7,   //10: BW62_57Cr45sf7, Bw = 62.5khz, imp header off, Cr= 4/5, Sf7  = 128 chips/symbol, CRC on.
+	BW125CR46SF9,     //11: BW125CR46SF9,   Bw = 125khz,  imp header off, Cr= 4/5, Sf9  = 1024 chips/symbol, CRC on.
+	BW62_5CR45SF10,   //12: BW62_5CR45SF10, Bw = 62.5khz, imp header off, Cr= 4/5, Sf8  = 1024 chips/symbol, CRC on.
+	BW62_5CR46SF10,   //13: BW62_5CR46SF10, Bw = 62.5khz, imp header off, Cr= 4/6, Sf10  = 1024 chips/symbol, CRC on.
+	BW62_5CR45SF11,   //14: BW62_5CR45SF11, Bw = 62.5khz, imp header off, Cr= 4/5, Sf11  = 2048 chips/symbol, CRC on.
+	BW125CR45SF11,    //15: BW125CR45SF11,  Bw = 125khz,  imp header off, Cr= 4/5, Sf11  = 2048 chips/symbol, CRC on.
+	BW125CR45SF7,    //16: BW125CR45SF10,  Bw = 125khz,  imp header off, Cr= 4/5, Sf10  = 1024 chips/symbol, CRC on.
+	BW31_25CR45SF8,   //17: BW31_25CR45SF8, Bw = 31.25khz, imp header off, Cr= 4/5, Sf8   = 256  chips/symbol, CRC on.
+	BW41_7CR45SF9,    //18: BW41_7CR45SF9,  Bw = 41.7khz, imp header off, Cr= 4/5, Sf9   = 512  chips/symbol, CRC on.
+	BW41_7CR45SF10,   //19: BW41_7CR45SF10, Bw = 41.7khz, imp header off,  Cr= 4/5, Sf10  = 1024 chips/symbol, CRC on, 
     } ModemConfigChoice;
 
     /// Constructor. You can have multiple instances, but each instance must have its own
